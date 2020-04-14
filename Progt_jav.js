@@ -3,7 +3,7 @@
 // 1.a) Egyszerű
 
 // számok:
-const number = 6;
+let number = 6;
 
 // Stringek:
 const String = "Ez egy string";
@@ -27,16 +27,24 @@ const funk = () => {
 
 // 2. Feladat: ref és érték szerinti átadódás:
 
-// const numberTimesTwo = number * 2;
-// console.log(numberTimesTwo);
-// console.log(number);
-// const arrayManipulation = (arr) => {
-//   for ( let i = 0; i < arr.length; i++ ) {
-//     return arr[i] * 2;
-//   }
-// }
-// console.log(arrayManipulation(array1));
-// console.log(array1);
+// 2.1: érték szerinti átadódás( tehát nem változik meg az eredeti változó értéke ):
+let newNumber = number * 2;
+
+console.log(number, newNumber);
+
+// 2.2 referencia szeritni átadódás: nem az arraynek nincs értéke az csak egy a memóriából hozzárendelt értékre mutat:
+let refArray = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i] * i + 1;
+  }
+  return arr;
+};
+
+console.log(refArray(array1));
+console.log(array1);
+
+let shouldBeEqual = array1;
+console.log(shouldBeEqual);
 
 // 3. feladat: Eldöntés:
 
@@ -102,16 +110,33 @@ console.log(section(array1, array2));
 
 // 7. export:
 
-const sum = (a, b) => {
-  return a + b;
+const sum = (x, y) => {
+  return x + y;
 };
 
-const multi = (a, b) => {
-  return a * b;
+const multi = (x, y) => {
+  return x * y;
 };
 
-const devide = (a, b) => {
-  return a/b;
+const devide = (x, y) => {
+  return x / y;
 };
 
 module.exports = { sum, multi, devide };
+
+// 8. Mátrix:
+
+const matrix = (x, y) => {
+  let arr = new Array(x);
+  for (let i = 0; i < x; i++) {
+    arr[i] = new Array(y);
+    for (let j = 0; j < y; j++) {
+      arr[i][j] = i * j;
+    }
+  }
+  return arr;
+};
+
+const generateMatrix = matrix(3, 3);
+console.log(generateMatrix);
+
